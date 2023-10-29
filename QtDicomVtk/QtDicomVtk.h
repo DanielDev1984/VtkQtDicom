@@ -2,6 +2,10 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_QtDicomVtk.h"
+#include <vtkGenericOpenGLRenderWindow.h>
+#include <vtkRenderer.h>
+#include <QVTKInteractor.h>
+#include <vtkInteractorStyle.h>
 
 class QtDicomVtk : public QMainWindow
 {
@@ -10,7 +14,12 @@ class QtDicomVtk : public QMainWindow
 public:
     QtDicomVtk(QWidget *parent = nullptr);
     ~QtDicomVtk();
-
+public slots:
+    void onDrawSphereClicked();
 private:
     Ui::QtDicomVtkClass ui;
+    vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
+    vtkSmartPointer<vtkRenderer> m_renderer;
+    vtkSmartPointer<QVTKInteractor> m_interactor;
+    vtkSmartPointer<vtkInteractorStyle> m_interactorStyle;
 };

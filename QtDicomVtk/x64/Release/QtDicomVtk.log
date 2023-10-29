@@ -1,10 +1,2 @@
-﻿  Reading Qt configuration (C:/Qt/6.0.2/msvc2019_64/bin/qmake)
-  uic QtDicomVtk.ui
-  rcc QtDicomVtk.qrc
-  moc QtDicomVtk.h
-   RCC: Warning: No resources in 'C:\Users\strai\source\repos\VtkQtDicom\QtDicomVtk\QtDicomVtk.qrc'.
-  QtDicomVtk.cpp
-  main.cpp
-  qrc_QtDicomVtk.cpp
-  moc_QtDicomVtk.cpp
+﻿  QtDicomVtk.cpp
   QtDicomVtk.vcxproj -> C:\Users\strai\source\repos\VtkQtDicom\QtDicomVtk\x64\Release\QtDicomVtk.exe
