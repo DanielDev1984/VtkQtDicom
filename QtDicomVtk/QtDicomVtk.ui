@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QVTKOpenGLWidget" name="openGLWidget"/>
+     <widget class="QVTKOpenGLNativeWidget" name="openGLWidget"/>
     </item>
     <item>
      <widget class="QPushButton" name="pushButton">
@@ -50,9 +50,9 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>QVTKOpenGLWidget</class>
+   <class>QVTKOpenGLnativeWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>qvtkopenglwidget.h</header>
+   <header>qvtkopenglnativewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>
