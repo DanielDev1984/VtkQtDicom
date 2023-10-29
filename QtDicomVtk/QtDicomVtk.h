@@ -19,7 +19,8 @@ public slots:
 private:
     Ui::QtDicomVtkClass ui;
     vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
-    vtkSmartPointer<vtkRenderer> m_renderer;
+    vtkSmartPointer<vtkRenderer> m_renderer_fg;
+    vtkSmartPointer<vtkRenderer> m_renderer_bg;
     vtkSmartPointer<QVTKInteractor> m_interactor;
     vtkSmartPointer<vtkInteractorStyle> m_interactorStyle;
 };
