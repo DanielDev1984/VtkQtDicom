@@ -3,7 +3,7 @@
 #include <vtkActor.h>
 #include <vtkImageActor.h>
 #include <vtkPolyDataMapper.h>
-#include <vtkPNMReader.h>
+#include <vtkDICOMImageReader.h>
 
 QtDicomVtk::QtDicomVtk(QWidget *parent)
     : QMainWindow(parent),
@@ -32,6 +32,7 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
 
     // set ui-connection
     QObject::connect(ui.pushButton, &QPushButton::clicked, this, &QtDicomVtk::onDrawSphereClicked);
+    std::cout << "test";
 }
 
 QtDicomVtk::~QtDicomVtk()
@@ -39,11 +40,12 @@ QtDicomVtk::~QtDicomVtk()
 
 void QtDicomVtk::onDrawSphereClicked()
 {
-    vtkSmartPointer<vtkPNMReader> imageReader_bG{ vtkSmartPointer<vtkPNMReader>::New() };
-    constexpr auto fN_bG{ "C:\\Users\\strai\\source\\TDD_raytracer\\TDD_Raytracer\\renderedImage.ppm" };
+    vtkSmartPointer<vtkDICOMImageReader> imageReader_bG{ vtkSmartPointer<vtkDICOMImageReader>::New() };
+    constexpr auto fN_bG{ ".\\data\\vhf29.dcm" };
     imageReader_bG->SetFileName(fN_bG);
     imageReader_bG->Update();
     const auto imageData_bG{ imageReader_bG->GetOutput() };
+    
     vtkSmartPointer<vtkImageActor> actor_bG{ vtkSmartPointer<vtkImageActor>::New() };
     actor_bG->SetInputData(imageData_bG);
     m_renderer_bg->AddViewProp(actor_bG);
@@ -51,7 +53,7 @@ void QtDicomVtk::onDrawSphereClicked()
 
     // create sphere
     vtkSmartPointer<vtkSphereSource> sphereSource{ vtkSmartPointer<vtkSphereSource>::New() };
-    sphereSource->SetRadius(5);
+    sphereSource->SetRadius(1);
     sphereSource->Update();
     // create sphere actor
     vtkSmartPointer<vtkPolyDataMapper> sphereMapper{ vtkSmartPointer<vtkPolyDataMapper>::New() };
@@ -59,7 +61,7 @@ void QtDicomVtk::onDrawSphereClicked()
     vtkSmartPointer<vtkActor> sphere{ vtkSmartPointer<vtkActor>::New() };
     sphere->SetMapper(sphereMapper);
     // add sphere actor to OpenGL
-    m_renderer_fg->AddViewProp(sphere);
+    //m_renderer_fg->AddViewProp(sphere);
     m_renderer_fg->ResetCamera();
     m_renderWindow->Render();
     

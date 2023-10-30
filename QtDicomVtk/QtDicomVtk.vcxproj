@@ -61,6 +61,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <IncludePath>C:\Program Files %28x86%29\VTK;C:\Program Files %28x86%29\VTK\include\vtk-9.2;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\VTK\lib;C:\Program Files %28x86%29\VTK\bin;C:\Program Files %28x86%29\VTK;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <IncludePath>C:\Program Files %28x86%29\VTK;C:\Program Files %28x86%29\VTK\include\vtk-9.2;$(IncludePath)</IncludePath>
@@ -71,6 +73,19 @@
       <AdditionalLibraryDirectories>C:\Program Files %28x86%29\VTK\bin;C:\Program Files %28x86%29\VTK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>C:\\Program Files (x86)\\VTK\lib\\vtksys-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonCore-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkRenderingOpenGL2-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkGUISupportQt-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkRenderingCore-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkFiltersSources-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkFiltersCore-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonDataModel-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonExecutionModel-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkImagingSources-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkIOImage-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonColor-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonTransforms-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkFiltersGeneral-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkIOXML-9.2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\VTK\lib;C:\Program Files %28x86%29\VTK\bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>C:\\Program Files (x86)\\VTK\lib\\vtksys-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonCore-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkRenderingOpenGL2-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkGUISupportQt-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkRenderingCore-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkFiltersSources-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkFiltersCore-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonDataModel-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonExecutionModel-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkImagingSources-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkIOImage-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonColor-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkCommonTransforms-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkFiltersGeneral-9.2.lib;C:\\Program Files (x86)\\VTK\lib\\vtkIOXML-9.2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
