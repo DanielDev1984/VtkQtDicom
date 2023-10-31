@@ -1,6 +1,7 @@
 #include "QtDicomVtk.h"
 #include <vtkSphereSource.h>
 #include <vtkActor.h>
+#include <vtkFileOutputWindow.h>
 #include <vtkImageActor.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkDICOMImageReader.h>
@@ -40,6 +41,8 @@ QtDicomVtk::~QtDicomVtk()
 
 void QtDicomVtk::onDrawSphereClicked()
 {
+    vtkOutputWindow::GetInstance()->DisplayText("test");
+
     vtkSmartPointer<vtkDICOMImageReader> imageReader_bG{ vtkSmartPointer<vtkDICOMImageReader>::New() };
     constexpr auto fN_bG{ ".\\data\\vhf29.dcm" };
     imageReader_bG->SetFileName(fN_bG);
