@@ -38,7 +38,8 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
 
     // set ui-connection
     QObject::connect(ui.pushButton, &QPushButton::clicked, this, &QtDicomVtk::onDrawSphereClicked);
-    std::cout << "test";
+    QObject::connect(ui.Slider_Level, &QSlider::valueChanged, this, &QtDicomVtk::onChangeLevel);
+    QObject::connect(ui.Slider_Window, &QSlider::valueChanged, this, &QtDicomVtk::onChangeWindow);
 }
 
 QtDicomVtk::~QtDicomVtk()
@@ -101,4 +102,22 @@ void QtDicomVtk::onDrawSphereClicked()
     m_renderer_fg->ResetCamera();
     m_renderWindow->Render();
     
+}
+
+void QtDicomVtk::onChangeLevel() 
+{
+    std::stringstream ss;
+    ss << "level: " << ui.Slider_Level->value() << "\n";
+    const std::string tmp = ss.str();
+    const char* cstr = tmp.c_str();
+    vtkOutputWindow::GetInstance()->DisplayText(cstr);
+}
+
+void QtDicomVtk::onChangeWindow() 
+{
+    std::stringstream ss;
+    ss << "window: " << ui.Slider_Window->value() << "\n";
+    const std::string tmp = ss.str();
+    const char* cstr = tmp.c_str();
+    vtkOutputWindow::GetInstance()->DisplayText(cstr);
 }

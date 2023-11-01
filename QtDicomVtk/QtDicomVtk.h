@@ -15,7 +15,9 @@ public:
     QtDicomVtk(QWidget *parent = nullptr);
     ~QtDicomVtk();
 public slots:
-    void onDrawSphereClicked();
+    void onDrawSphereClicked(); 
+    void onChangeLevel();
+    void onChangeWindow();
 private:
     Ui::QtDicomVtkClass ui;
     vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;

@@ -18,3 +18,14 @@ QtDicomVtk/x64/Release/main.obj
 *.obj
 *.tlog
 *.tlog
+*.obj
+QtDicomVtk/x64/Release/main.obj
+QtDicomVtk/x64/Release/moc/moc_QtDicomVtk.cpp
+QtDicomVtk/x64/Release/moc_QtDicomVtk.obj
+QtDicomVtk/x64/Release/qt_work.log
+QtDicomVtk/x64/Release/QtDicomVtk.exe
+QtDicomVtk/x64/Release/QtDicomVtk.log
+QtDicomVtk/x64/Release/QtDicomVtk.obj
+QtDicomVtk/x64/Release/QtDicomVtk.tlog/CL.command.1.tlog
+QtDicomVtk/x64/Release/QtDicomVtk.tlog/CL.read.1.tlog
+QtDicomVtk/x64/Release/QtDicomVtk.tlog/QtDicomVtk.write.1u.tlog
