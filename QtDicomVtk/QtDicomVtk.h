@@ -22,11 +22,15 @@ public slots:
 private:
     Ui::QtDicomVtkClass ui;
     vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
-    vtkSmartPointer<vtkRenderer> m_renderer_fg;
+    vtkSmartPointer<vtkRenderer> m_renderer_fg;    
     vtkSmartPointer<vtkRenderer> m_renderer_bg;
+    vtkSmartPointer<vtkRenderer> m_renderer_bg_left;
+    vtkSmartPointer<vtkRenderer> m_renderer_bg_right;
     vtkSmartPointer<QVTKInteractor> m_interactor;
     vtkSmartPointer<vtkInteractorStyle> m_interactorStyle;
     vtkSmartPointer<vtkImageActor> m_actor_bG;
+    vtkSmartPointer<vtkImageActor> m_actor_bG_left;
+    vtkSmartPointer<vtkImageActor> m_actor_bG_right;
     double m_windowRange;
     double m_windowSliderMax;
     double m_windowSliderMin;
