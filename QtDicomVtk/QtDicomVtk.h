@@ -6,6 +6,7 @@
 #include <vtkRenderer.h>
 #include <QVTKInteractor.h>
 #include <vtkInteractorStyle.h>
+#include <vtkImageActor.h>
 
 class QtDicomVtk : public QMainWindow
 {
@@ -25,4 +26,13 @@ private:
     vtkSmartPointer<vtkRenderer> m_renderer_bg;
     vtkSmartPointer<QVTKInteractor> m_interactor;
     vtkSmartPointer<vtkInteractorStyle> m_interactorStyle;
+    vtkSmartPointer<vtkImageActor> m_actor_bG;
+    double m_windowRange;
+    double m_windowSliderMax;
+    double m_windowSliderMin;
+
+    double m_levelRange;
+    double m_levelSliderMax;
+    double m_levelSliderMin;
+    
 };

@@ -17,7 +17,8 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     m_renderer_fg{vtkSmartPointer<vtkRenderer>::New()},
     m_renderer_bg{ vtkSmartPointer<vtkRenderer>::New() },
     m_interactor{ vtkSmartPointer<QVTKInteractor>::New() },
-    m_interactorStyle{ vtkSmartPointer<vtkInteractorStyle>::New() }
+    m_interactorStyle{ vtkSmartPointer<vtkInteractorStyle>::New() },
+    m_actor_bG{ vtkSmartPointer<vtkImageActor>::New() }
 {
     ui.setupUi(this);
 
@@ -40,6 +41,12 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     QObject::connect(ui.pushButton, &QPushButton::clicked, this, &QtDicomVtk::onDrawSphereClicked);
     QObject::connect(ui.Slider_Level, &QSlider::valueChanged, this, &QtDicomVtk::onChangeLevel);
     QObject::connect(ui.Slider_Window, &QSlider::valueChanged, this, &QtDicomVtk::onChangeWindow);
+
+    m_windowSliderMax = ui.Slider_Window->maximum();
+    m_windowSliderMin = ui.Slider_Window->minimum();
+    m_levelSliderMax = ui.Slider_Level->maximum();
+    m_levelSliderMin = ui.Slider_Level->minimum();
+    
 }
 
 QtDicomVtk::~QtDicomVtk()
@@ -67,7 +74,9 @@ void QtDicomVtk::onDrawSphereClicked()
     vtkIdType nbins = histogram->GetNumberOfBins();
     double range[2];
     const auto level{ histogram->GetBinOrigin() };
+    m_levelRange = level;
     const auto width{level + (nbins - 1) * histogram->GetBinSpacing()};
+    m_windowRange = width;
 
     std::stringstream ss;
     ss << "level: " << level << "width: " << width;
@@ -81,11 +90,11 @@ void QtDicomVtk::onDrawSphereClicked()
 
     vtkSmartPointer<vtkImageActor> actor_bG{ vtkSmartPointer<vtkImageActor>::New() };
     
-    actor_bG->SetInputData(imageData_bG);
-    actor_bG->GetProperty()->SetColorWindow(width);
-    actor_bG->GetProperty()->SetColorLevel(level);
+    m_actor_bG->SetInputData(imageData_bG);
+    m_actor_bG->GetProperty()->SetColorWindow(width);
+    m_actor_bG->GetProperty()->SetColorLevel(level);
     
-    m_renderer_bg->AddViewProp(actor_bG);
+    m_renderer_bg->AddViewProp(m_actor_bG);
     m_renderer_bg->ResetCamera();
 
     // create sphere
@@ -106,18 +115,36 @@ void QtDicomVtk::onDrawSphereClicked()
 
 void QtDicomVtk::onChangeLevel() 
 {
+    const auto sliderVal{ ui.Slider_Level->value() };
+    
+    const auto relativeVal{ (sliderVal - m_levelSliderMin) / m_levelSliderMax };
+    m_actor_bG->GetProperty()->SetColorLevel(relativeVal * m_levelRange);
+
     std::stringstream ss;
-    ss << "level: " << ui.Slider_Level->value() << "\n";
+    ss << "level: " << m_actor_bG->GetProperty()->GetColorLevel() << "\n";
     const std::string tmp = ss.str();
     const char* cstr = tmp.c_str();
     vtkOutputWindow::GetInstance()->DisplayText(cstr);
+
+    m_renderer_bg->AddViewProp(m_actor_bG);
+    m_renderer_bg->ResetCamera();
+    m_renderWindow->Render();
 }
 
 void QtDicomVtk::onChangeWindow() 
 {
+    const auto sliderVal{ ui.Slider_Window->value() };
+
+    const auto relativeVal{ (sliderVal - m_windowSliderMin) / m_windowSliderMax };
+    m_actor_bG->GetProperty()->SetColorWindow(relativeVal * m_windowRange);
+
     std::stringstream ss;
-    ss << "window: " << ui.Slider_Window->value() << "\n";
+    ss << "level: " << m_actor_bG->GetProperty()->GetColorWindow() << "\n";
     const std::string tmp = ss.str();
     const char* cstr = tmp.c_str();
     vtkOutputWindow::GetInstance()->DisplayText(cstr);
+
+    m_renderer_bg->AddViewProp(m_actor_bG);
+    m_renderer_bg->ResetCamera();
+    m_renderWindow->Render();
 }

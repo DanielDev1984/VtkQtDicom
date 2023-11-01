@@ -1,2 +1,5 @@
-﻿  QtDicomVtk.cpp
+﻿  moc QtDicomVtk.h
+  QtDicomVtk.cpp
+  main.cpp
+  moc_QtDicomVtk.cpp
   QtDicomVtk.vcxproj -> C:\Users\strai\source\repos\VtkQtDicom\QtDicomVtk\x64\Release\QtDicomVtk.exe
