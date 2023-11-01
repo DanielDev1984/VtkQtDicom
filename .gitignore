@@ -5,3 +5,16 @@
 /VtkQtDicom/.vs/VtkQtDicom/v16
 /QtDicomVtk/.vs/QtDicomVtk/v16
 /QtDicomVtk/x64/Debug
+*.obj
+*.obj
+QtDicomVtk/x64/Release/main.obj
+*.props
+*.log
+*.vcxproj
+*.props
+*.log
+*.exe
+*.log
+*.obj
+*.tlog
+*.tlog

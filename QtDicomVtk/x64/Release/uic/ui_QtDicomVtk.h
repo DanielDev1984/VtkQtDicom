@@ -11,12 +11,13 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "qvtkopenglnativewidget.h"
 
@@ -26,9 +27,12 @@ class Ui_QtDicomVtkClass
 {
 public:
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
     QVTKOpenGLNativeWidget *openGLWidget;
     QPushButton *pushButton;
+    QSlider *Slider_Level;
+    QSlider *Slider_Window;
+    QLabel *label;
+    QLabel *label_2;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -40,24 +44,30 @@ public:
         QtDicomVtkClass->resize(449, 400);
         centralWidget = new QWidget(QtDicomVtkClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         openGLWidget = new QVTKOpenGLNativeWidget(centralWidget);
         openGLWidget->setObjectName(QString::fromUtf8("openGLWidget"));
-
-        verticalLayout->addWidget(openGLWidget);
-
+        openGLWidget->setGeometry(QRect(100, 10, 231, 181));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-
-        verticalLayout->addWidget(pushButton);
-
+        pushButton->setGeometry(QRect(10, 210, 75, 23));
+        Slider_Level = new QSlider(centralWidget);
+        Slider_Level->setObjectName(QString::fromUtf8("Slider_Level"));
+        Slider_Level->setGeometry(QRect(10, 262, 201, 22));
+        Slider_Level->setOrientation(Qt::Horizontal);
+        Slider_Window = new QSlider(centralWidget);
+        Slider_Window->setObjectName(QString::fromUtf8("Slider_Window"));
+        Slider_Window->setGeometry(QRect(9, 316, 201, 22));
+        Slider_Window->setOrientation(Qt::Horizontal);
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(11, 237, 47, 16));
+        label_2 = new QLabel(centralWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setGeometry(QRect(10, 290, 47, 16));
         QtDicomVtkClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtDicomVtkClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 449, 22));
+        menuBar->setGeometry(QRect(0, 0, 449, 21));
         QtDicomVtkClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(QtDicomVtkClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -74,7 +84,9 @@ public:
     void retranslateUi(QMainWindow *QtDicomVtkClass)
     {
         QtDicomVtkClass->setWindowTitle(QCoreApplication::translate("QtDicomVtkClass", "QtDicomVtk", nullptr));
-        pushButton->setText(QCoreApplication::translate("QtDicomVtkClass", "PushButton", nullptr));
+        pushButton->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplyScan", nullptr));
+        label->setText(QCoreApplication::translate("QtDicomVtkClass", "Level", nullptr));
+        label_2->setText(QCoreApplication::translate("QtDicomVtkClass", "Window", nullptr));
     } // retranslateUi
 
 };

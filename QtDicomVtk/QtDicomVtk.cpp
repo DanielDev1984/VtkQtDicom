@@ -49,6 +49,7 @@ void QtDicomVtk::onDrawSphereClicked()
 
 
     vtkSmartPointer<vtkDICOMImageReader> imageReader_bG{ vtkSmartPointer<vtkDICOMImageReader>::New() };
+    // todo: make it possible to select files manually
     constexpr auto fN_bG{ ".\\data\\vhf29.dcm" };
     imageReader_bG->SetFileName(fN_bG);
     imageReader_bG->Update();
