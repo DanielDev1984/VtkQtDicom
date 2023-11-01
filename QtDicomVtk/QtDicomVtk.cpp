@@ -3,6 +3,8 @@
 #include <vtkActor.h>
 #include <vtkFileOutputWindow.h>
 #include <vtkImageActor.h>
+#include <vtkImageHistogram.h>
+
 #include <vtkPolyDataMapper.h>
 #include <vtkDICOMImageReader.h>
 
@@ -49,8 +51,19 @@ void QtDicomVtk::onDrawSphereClicked()
     imageReader_bG->Update();
     const auto imageData_bG{ imageReader_bG->GetOutput() };
     
+    vtkNew<vtkImageHistogram> histogram;
+    histogram->SetInputConnection(imageReader_bG->GetOutputPort());
+    histogram->GenerateHistogramImageOn();
+    histogram->SetHistogramImageSize(256, 256);
+    histogram->SetHistogramImageScaleToSqrt();
+    histogram->AutomaticBinningOn();
+    histogram->Update();
+    const auto histogramData_bG{ histogram->GetOutput() };
+
+
     vtkSmartPointer<vtkImageActor> actor_bG{ vtkSmartPointer<vtkImageActor>::New() };
-    actor_bG->SetInputData(imageData_bG);
+    actor_bG->SetInputData(histogramData_bG);
+    
     m_renderer_bg->AddViewProp(actor_bG);
     m_renderer_bg->ResetCamera();
 
