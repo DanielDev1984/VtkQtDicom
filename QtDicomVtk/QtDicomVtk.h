@@ -5,6 +5,7 @@
 
 #include <QtWidgets/QGraphicsScene>
 #include <QGraphicsView>
+#include <QGraphicsRectItem>
 
 #include "ui_QtDicomVtk.h"
 #include <vtkGenericOpenGLRenderWindow.h>
@@ -37,9 +38,9 @@ private:
     vtkSmartPointer<vtkImageActor> m_actor_bG_left;
     vtkSmartPointer<vtkImageActor> m_actor_bG_right;
 
-    QLabel* m_testlabel;
     QGraphicsScene* m_scene;
     QGraphicsView* m_graphicsView;
+    QGraphicsRectItem* m_rectItem;
 
     double m_windowRange;
     double m_windowSliderMax;

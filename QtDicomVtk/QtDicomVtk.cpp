@@ -28,11 +28,6 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     m_actor_bG_right{ vtkSmartPointer<vtkImageActor>::New() }
 {
     ui.setupUi(this);
-
-    m_testlabel = new QLabel(ui.centralWidget);
-    m_testlabel->setObjectName(QString::fromUtf8("m_testlabel "));
-    m_testlabel->setGeometry(QRect(50, 317, 60, 16));
-    m_testlabel->setText("aaaa");
     
 
     m_graphicsView = new QGraphicsView(ui.centralWidget);
@@ -47,7 +42,8 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     QPen outlinePen(Qt::black);
     QBrush blueBrush{QColor(127,0,0,50) };
     
-    m_scene->addRect(-100, 0, 40, m_graphicsView->height()-5, outlinePen, blueBrush);
+    m_rectItem = m_scene->addRect(-100, 0, 40, m_graphicsView->height()-5, outlinePen, blueBrush);
+    
     auto boundingRect = m_scene->itemsBoundingRect();
     m_scene->setSceneRect(0, 0, boundingRect.right(), boundingRect.bottom());
     
@@ -90,7 +86,7 @@ QtDicomVtk::~QtDicomVtk()
 
 void QtDicomVtk::onDrawSphereClicked()
 {
-
+    
 
     vtkSmartPointer<vtkDICOMImageReader> imageReader_bG{ vtkSmartPointer<vtkDICOMImageReader>::New() };
     // todo: make it possible to select files manually
@@ -231,7 +227,19 @@ void QtDicomVtk::onChangeLevel()
 
     const auto sliderVal{ ui.Slider_Level->value() };
     
+    
+
     const auto relativeVal{ (sliderVal - m_levelSliderMin) / m_levelSliderMax };
+    
+    const auto sliderVal_Window{ ui.Slider_Window->value() };
+    const auto relativeValWindow{ (sliderVal_Window - m_windowSliderMin) / m_windowSliderMax };
+
+    
+    //todo: atm this is just a poc, and not reflecting the actual values of the histogram
+    //-> make this more robust / working correctly
+    m_rectItem->setRect(-100 + relativeVal*100, 0, relativeValWindow*40, m_graphicsView->height() - 5);
+    
+
     m_actor_bG_left->GetProperty()->SetColorLevel(relativeVal * m_levelRange);
 
     std::stringstream ss;
@@ -250,6 +258,14 @@ void QtDicomVtk::onChangeWindow()
     const auto sliderVal{ ui.Slider_Window->value() };
 
     const auto relativeVal{ (sliderVal - m_windowSliderMin) / m_windowSliderMax };
+
+
+    const auto sliderVal_Level{ ui.Slider_Level->value() };
+    const auto relativeValLevel{ (sliderVal_Level - m_levelSliderMin) / m_levelSliderMax };
+    //todo: atm this is just a poc, and not reflecting the actual values of the histogram
+    //-> make this more robust / working correctly
+    m_rectItem->setRect(-100 + relativeValLevel * 100, 0, relativeVal*40, m_graphicsView->height() - 5);
+    
     m_actor_bG_left->GetProperty()->SetColorWindow(relativeVal * m_windowRange);
 
     std::stringstream ss;
