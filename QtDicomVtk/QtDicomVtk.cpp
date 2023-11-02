@@ -29,6 +29,32 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
 {
     ui.setupUi(this);
 
+    m_testlabel = new QLabel(ui.centralWidget);
+    m_testlabel->setObjectName(QString::fromUtf8("m_testlabel "));
+    m_testlabel->setGeometry(QRect(50, 317, 60, 16));
+    m_testlabel->setText("aaaa");
+    
+
+    m_graphicsView = new QGraphicsView(ui.centralWidget);
+    m_graphicsView->setGeometry(QRect(315, 100, 130, 130));
+    QBrush test1{ QColor(127,127,0,127) };
+    m_graphicsView->setBackgroundBrush(test1);
+    m_graphicsView->setStyleSheet("background: transparent");
+    m_scene = new QGraphicsScene(ui.centralWidget);
+    m_graphicsView->setScene(m_scene);
+    QBrush test{ QColor(127,127,127,127) };
+    //m_scene->setBackgroundBrush(test);
+    QPen outlinePen(Qt::black);
+    QBrush blueBrush{QColor(127,0,0,50) };
+    
+    m_scene->addRect(-100, 0, 40, m_graphicsView->height()-5, outlinePen, blueBrush);
+    auto boundingRect = m_scene->itemsBoundingRect();
+    m_scene->setSceneRect(0, 0, boundingRect.right(), boundingRect.bottom());
+    
+
+
+    //m_scene->addRect(100, 0, 80, 100, Qt::black, Qt::blue);
+
     // setup rendering
     /*const auto i{ 1 };
     m_renderer_fg->SetViewport(0.5 * (i & 1), 0.0, 0.5 + 0.5 * (i & 1), 1.0);*/
