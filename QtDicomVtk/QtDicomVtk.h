@@ -25,6 +25,8 @@ public slots:
     void onDrawSphereClicked(); 
     void onChangeLevel();
     void onChangeWindow();
+    void onChangeZRotation();
+    void onChangeZPosition();
 private:
     Ui::QtDicomVtkClass ui;
     vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
@@ -37,6 +39,7 @@ private:
     vtkSmartPointer<vtkImageActor> m_actor_bG;
     vtkSmartPointer<vtkImageActor> m_actor_bG_left;
     vtkSmartPointer<vtkImageActor> m_actor_bG_right;
+    vtkSmartPointer<vtkActor> m_actor_polyData;
 
     QGraphicsScene* m_scene;
     QGraphicsView* m_graphicsView;

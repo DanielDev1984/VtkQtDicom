@@ -33,6 +33,10 @@ public:
     QSlider *Slider_Window;
     QLabel *label;
     QLabel *label_2;
+    QSlider *SliderZRotation;
+    QLabel *label_3;
+    QSlider *Slider_ZPosition;
+    QLabel *label_4;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -64,10 +68,24 @@ public:
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
         label_2->setGeometry(QRect(10, 370, 47, 16));
+        SliderZRotation = new QSlider(centralWidget);
+        SliderZRotation->setObjectName(QString::fromUtf8("SliderZRotation"));
+        SliderZRotation->setGeometry(QRect(310, 400, 160, 22));
+        SliderZRotation->setOrientation(Qt::Horizontal);
+        label_3 = new QLabel(centralWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(310, 380, 71, 16));
+        Slider_ZPosition = new QSlider(centralWidget);
+        Slider_ZPosition->setObjectName(QString::fromUtf8("Slider_ZPosition"));
+        Slider_ZPosition->setGeometry(QRect(310, 350, 160, 22));
+        Slider_ZPosition->setOrientation(Qt::Horizontal);
+        label_4 = new QLabel(centralWidget);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setGeometry(QRect(310, 330, 71, 16));
         QtDicomVtkClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtDicomVtkClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 569, 21));
+        menuBar->setGeometry(QRect(0, 0, 569, 22));
         QtDicomVtkClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(QtDicomVtkClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -87,6 +105,8 @@ public:
         pushButton->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplyScan", nullptr));
         label->setText(QCoreApplication::translate("QtDicomVtkClass", "Level", nullptr));
         label_2->setText(QCoreApplication::translate("QtDicomVtkClass", "Window", nullptr));
+        label_3->setText(QCoreApplication::translate("QtDicomVtkClass", "ZRotation", nullptr));
+        label_4->setText(QCoreApplication::translate("QtDicomVtkClass", "ZPosition", nullptr));
     } // retranslateUi
 
 };

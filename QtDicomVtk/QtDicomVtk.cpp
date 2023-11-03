@@ -28,7 +28,8 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     m_interactorStyle{ vtkSmartPointer<vtkInteractorStyle>::New() },
     m_actor_bG{ vtkSmartPointer<vtkImageActor>::New() },
     m_actor_bG_left{ vtkSmartPointer<vtkImageActor>::New() },
-    m_actor_bG_right{ vtkSmartPointer<vtkImageActor>::New() }
+    m_actor_bG_right{ vtkSmartPointer<vtkImageActor>::New() },
+    m_actor_polyData{ vtkSmartPointer<vtkActor>::New() }
 {
     ui.setupUi(this);
     
@@ -76,6 +77,8 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     QObject::connect(ui.pushButton, &QPushButton::clicked, this, &QtDicomVtk::onDrawSphereClicked);
     QObject::connect(ui.Slider_Level, &QSlider::valueChanged, this, &QtDicomVtk::onChangeLevel);
     QObject::connect(ui.Slider_Window, &QSlider::valueChanged, this, &QtDicomVtk::onChangeWindow);
+    QObject::connect(ui.SliderZRotation, &QSlider::valueChanged, this, &QtDicomVtk::onChangeZRotation);
+    QObject::connect(ui.Slider_ZPosition, &QSlider::valueChanged, this, &QtDicomVtk::onChangeZPosition);
 
     m_windowSliderMax = ui.Slider_Window->maximum();
     m_windowSliderMin = ui.Slider_Window->minimum();
@@ -215,23 +218,27 @@ void QtDicomVtk::onDrawSphereClicked()
     auto polyData = reader->GetOutput();
     vtkSmartPointer<vtkPolyDataMapper> stlDataMapper{ vtkSmartPointer<vtkPolyDataMapper>::New() };
     stlDataMapper->SetInputData(polyData);
-    vtkSmartPointer<vtkActor> polyDataActor{ vtkSmartPointer<vtkActor>::New() };
+    //vtkSmartPointer<vtkActor> polyDataActor{ vtkSmartPointer<vtkActor>::New() };
     
     //polyDataActor->RotateZ(45);
     //polyDataActor->SetOrigin(-100, 0, 0);
 
-    vtkTransform* myTrans = vtkTransform::New();
-    myTrans->Translate(100, 0, 0);
-    polyDataActor->SetUserTransform(myTrans);
+    
+
+
+    //vtkTransform* myTrans = vtkTransform::New();
+    //myTrans->Translate(100, 0, 0);
+    //polyDataActor->SetUserTransform(myTrans);
+    //m_actor_polyData->SetUserTransform(myTrans);
 
     //polyDataActor->SetPosition(-100, 0, 0);
 
-    polyDataActor->GetProperty()->SetOpacity(0.8);
-    polyDataActor->GetProperty()->SetColor(0.5, 0.5, 0.5);
-    polyDataActor->GetProperty()->SetSpecularColor(1.0, 0.0, 0.0);
-    polyDataActor->GetProperty()->SetAmbientColor(0.5, 0.0, 0.0);
+    m_actor_polyData->GetProperty()->SetOpacity(0.8);
+    m_actor_polyData->GetProperty()->SetColor(0.5, 0.5, 0.5);
+    m_actor_polyData->GetProperty()->SetSpecularColor(1.0, 0.0, 0.0);
+    m_actor_polyData->GetProperty()->SetAmbientColor(0.5, 0.0, 0.0);
     
-    polyDataActor->SetMapper(stlDataMapper);
+    m_actor_polyData->SetMapper(stlDataMapper);
 
     // create sphere
     vtkSmartPointer<vtkSphereSource> sphereSource{ vtkSmartPointer<vtkSphereSource>::New() };
@@ -250,7 +257,7 @@ void QtDicomVtk::onDrawSphereClicked()
     sphere->SetMapper(sphereMapper);
     // add sphere actor to OpenGL
     //m_renderer_fg->AddViewProp(sphere);
-    m_renderer_fg->AddViewProp(polyDataActor);
+    m_renderer_fg->AddViewProp(m_actor_polyData);
     m_renderer_fg->ResetCamera();
     m_renderWindow->Render();
     
@@ -311,6 +318,27 @@ void QtDicomVtk::onChangeWindow()
     vtkOutputWindow::GetInstance()->DisplayText(cstr);
 
     m_renderer_bg->AddViewProp(m_actor_bG_left);
+    m_renderer_bg->ResetCamera();
+    m_renderWindow->Render();
+}
+
+void QtDicomVtk::onChangeZRotation()
+{
+    const auto sliderVal{ ui.SliderZRotation->value() };
+
+    m_actor_polyData->RotateZ(sliderVal);
+    
+    
+    m_renderer_bg->AddViewProp(m_actor_polyData);
+    m_renderer_bg->ResetCamera();
+    m_renderWindow->Render();
+}
+
+void QtDicomVtk::onChangeZPosition()
+{
+    const auto sliderVal{ ui.Slider_ZPosition->value() };
+    m_actor_polyData->SetPosition(sliderVal * 3, 1, 1);
+    m_renderer_bg->AddViewProp(m_actor_polyData);
     m_renderer_bg->ResetCamera();
     m_renderWindow->Render();
 }
