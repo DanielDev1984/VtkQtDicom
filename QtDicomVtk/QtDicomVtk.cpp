@@ -9,8 +9,11 @@
 #include <vtkImageSlice.h>
 #include <vtkImageSliceMapper.h>
 #include <vtkImageProperty.h>
+#include <vtkProperty.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkDICOMImageReader.h>
+#include <vtkSTLReader.h>
+#include <vtkTransform.h>
 
 #include <sstream>
 
@@ -204,17 +207,50 @@ void QtDicomVtk::onDrawSphereClicked()
     m_renderer_bg->AddViewProp(m_actor_bG);
     m_renderer_bg->ResetCamera();*/
 
+
+    vtkSmartPointer<vtkSTLReader> reader{ vtkSmartPointer<vtkSTLReader>::New() };
+    constexpr auto fN_polyData{ ".\\armstl\\arm.stl" };
+    reader->SetFileName(fN_polyData);
+    reader->Update();
+    auto polyData = reader->GetOutput();
+    vtkSmartPointer<vtkPolyDataMapper> stlDataMapper{ vtkSmartPointer<vtkPolyDataMapper>::New() };
+    stlDataMapper->SetInputData(polyData);
+    vtkSmartPointer<vtkActor> polyDataActor{ vtkSmartPointer<vtkActor>::New() };
+    
+    //polyDataActor->RotateZ(45);
+    //polyDataActor->SetOrigin(-100, 0, 0);
+
+    vtkTransform* myTrans = vtkTransform::New();
+    myTrans->Translate(100, 0, 0);
+    polyDataActor->SetUserTransform(myTrans);
+
+    //polyDataActor->SetPosition(-100, 0, 0);
+
+    polyDataActor->GetProperty()->SetOpacity(0.8);
+    polyDataActor->GetProperty()->SetColor(0.5, 0.5, 0.5);
+    polyDataActor->GetProperty()->SetSpecularColor(1.0, 0.0, 0.0);
+    polyDataActor->GetProperty()->SetAmbientColor(0.5, 0.0, 0.0);
+    
+    polyDataActor->SetMapper(stlDataMapper);
+
     // create sphere
     vtkSmartPointer<vtkSphereSource> sphereSource{ vtkSmartPointer<vtkSphereSource>::New() };
-    sphereSource->SetRadius(1);
+    //sphereSource->SetRadius(1);
+    sphereSource->SetCenter(50, 0, 0);
     sphereSource->Update();
+    
     // create sphere actor
     vtkSmartPointer<vtkPolyDataMapper> sphereMapper{ vtkSmartPointer<vtkPolyDataMapper>::New() };
     sphereMapper->SetInputData(sphereSource->GetOutput());
+
     vtkSmartPointer<vtkActor> sphere{ vtkSmartPointer<vtkActor>::New() };
+    //sphere->SetOrigin(0.0, 0.0, 0.0);
+    sphere->GetProperty()->SetOpacity(0.5);
+    
     sphere->SetMapper(sphereMapper);
     // add sphere actor to OpenGL
     //m_renderer_fg->AddViewProp(sphere);
+    m_renderer_fg->AddViewProp(polyDataActor);
     m_renderer_fg->ResetCamera();
     m_renderWindow->Render();
     
