@@ -13,6 +13,7 @@
 #include <QVTKInteractor.h>
 #include <vtkInteractorStyle.h>
 #include <vtkImageActor.h>
+#include <vtkImageViewer2.h>
 
 class QtDicomVtk : public QMainWindow
 {
@@ -23,10 +24,12 @@ public:
     ~QtDicomVtk();
 public slots:
     void onDrawSphereClicked(); 
+    void onDisplaySeriesClicked();
     void onChangeLevel();
     void onChangeWindow();
     void onChangeZRotation();
     void onChangeZPosition();
+    void onIncreaseSliceNoChange();
 private:
     Ui::QtDicomVtkClass ui;
     vtkSmartPointer<vtkGenericOpenGLRenderWindow> m_renderWindow;
@@ -40,6 +43,8 @@ private:
     vtkSmartPointer<vtkImageActor> m_actor_bG_left;
     vtkSmartPointer<vtkImageActor> m_actor_bG_right;
     vtkSmartPointer<vtkActor> m_actor_polyData;
+
+    vtkNew<vtkImageViewer2> m_imageViewer;
 
     QGraphicsScene* m_scene;
     QGraphicsView* m_graphicsView;

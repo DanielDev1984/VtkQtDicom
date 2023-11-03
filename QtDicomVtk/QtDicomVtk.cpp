@@ -9,6 +9,7 @@
 #include <vtkImageSlice.h>
 #include <vtkImageSliceMapper.h>
 #include <vtkImageProperty.h>
+
 #include <vtkProperty.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkDICOMImageReader.h>
@@ -79,6 +80,8 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     QObject::connect(ui.Slider_Window, &QSlider::valueChanged, this, &QtDicomVtk::onChangeWindow);
     QObject::connect(ui.SliderZRotation, &QSlider::valueChanged, this, &QtDicomVtk::onChangeZRotation);
     QObject::connect(ui.Slider_ZPosition, &QSlider::valueChanged, this, &QtDicomVtk::onChangeZPosition);
+    QObject::connect(ui.displaySeriesButton, &QPushButton::clicked, this, &QtDicomVtk::onDisplaySeriesClicked);
+    QObject::connect(ui.plusButton, &QPushButton::clicked, this, &QtDicomVtk::onIncreaseSliceNoChange);
 
     m_windowSliderMax = ui.Slider_Window->maximum();
     m_windowSliderMin = ui.Slider_Window->minimum();
@@ -96,8 +99,8 @@ void QtDicomVtk::onDrawSphereClicked()
 
     vtkSmartPointer<vtkDICOMImageReader> imageReader_bG{ vtkSmartPointer<vtkDICOMImageReader>::New() };
     // todo: make it possible to select files manually
-    constexpr auto fN_bG{ ".\\data\\vhf29.dcm" };
-    imageReader_bG->SetFileName(fN_bG);
+    constexpr auto fN_bG{ ".\\data" };
+    imageReader_bG->SetDirectoryName(fN_bG);
     imageReader_bG->Update();
     const auto imageData_bG{ imageReader_bG->GetOutput() };
 
@@ -261,6 +264,40 @@ void QtDicomVtk::onDrawSphereClicked()
     m_renderer_fg->ResetCamera();
     m_renderWindow->Render();
     
+}
+
+void QtDicomVtk::onDisplaySeriesClicked()
+{
+    vtkSmartPointer<vtkDICOMImageReader> reader{ vtkSmartPointer<vtkDICOMImageReader>::New() };
+    // todo: make it possible to select files manually
+    constexpr auto fN_bG{ ".\\data" };
+    reader->SetDirectoryName(fN_bG);
+    reader->Update();
+
+    //vtkNew<vtkImageViewer2> imageViewer;
+    m_imageViewer->SetInputConnection(reader->GetOutputPort());
+
+    const auto sliceMax{ m_imageViewer->GetSliceMax() };
+    const auto sliceMin{ m_imageViewer->GetSliceMin() };
+
+    std::stringstream ss;
+    ss << "sliceMax: " << sliceMax << "\n";
+    ss << "sliceMin: " << sliceMin << "\n";
+    const std::string tmp = ss.str();
+    const char* cstr = tmp.c_str();
+    vtkOutputWindow::GetInstance()->DisplayText(cstr);
+    
+    m_imageViewer->GetRenderWindow()->SetSize(400, 400);
+    
+    m_imageViewer->SetSlice(m_imageViewer->GetSlice()+1);
+    m_imageViewer->GetRenderWindow()->SetWindowName("ReadDICOMSeries");
+    m_imageViewer->Render();
+}
+
+void QtDicomVtk::onIncreaseSliceNoChange()
+{
+    m_imageViewer->SetSlice(m_imageViewer->GetSlice() + 1);
+    m_imageViewer->Render();
 }
 
 void QtDicomVtk::onChangeLevel() 
