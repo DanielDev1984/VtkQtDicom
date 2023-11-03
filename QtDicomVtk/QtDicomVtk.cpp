@@ -336,8 +336,9 @@ void QtDicomVtk::onChangeZRotation()
 
 void QtDicomVtk::onChangeZPosition()
 {
+    // todo: why is it not / how is it possible to initially place the polydata(actor) in a certain place (e.g. left-bottom corner)?
     const auto sliderVal{ ui.Slider_ZPosition->value() };
-    m_actor_polyData->SetPosition(sliderVal * 3, 1, 1);
+    m_actor_polyData->SetPosition(1, 1, sliderVal * 3);
     m_renderer_bg->AddViewProp(m_actor_polyData);
     m_renderer_bg->ResetCamera();
     m_renderWindow->Render();
