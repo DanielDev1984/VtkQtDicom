@@ -37,6 +37,8 @@ public:
     QLabel *label_3;
     QSlider *Slider_ZPosition;
     QLabel *label_4;
+    QPushButton *displaySeriesButton;
+    QPushButton *plusButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -82,6 +84,12 @@ public:
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(310, 330, 71, 16));
+        displaySeriesButton = new QPushButton(centralWidget);
+        displaySeriesButton->setObjectName(QString::fromUtf8("displaySeriesButton"));
+        displaySeriesButton->setGeometry(QRect(90, 290, 75, 23));
+        plusButton = new QPushButton(centralWidget);
+        plusButton->setObjectName(QString::fromUtf8("plusButton"));
+        plusButton->setGeometry(QRect(180, 290, 111, 24));
         QtDicomVtkClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtDicomVtkClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -107,6 +115,8 @@ public:
         label_2->setText(QCoreApplication::translate("QtDicomVtkClass", "Window", nullptr));
         label_3->setText(QCoreApplication::translate("QtDicomVtkClass", "ZRotation", nullptr));
         label_4->setText(QCoreApplication::translate("QtDicomVtkClass", "ZPosition", nullptr));
+        displaySeriesButton->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplaySeries", nullptr));
+        plusButton->setText(QCoreApplication::translate("QtDicomVtkClass", "increase sliceNo", nullptr));
     } // retranslateUi
 
 };

@@ -1,2 +1,3 @@
-﻿  QtDicomVtk.cpp
+﻿  rcc QtDicomVtk.qrc
+  qrc_QtDicomVtk.cpp
   QtDicomVtk.vcxproj -> C:\Users\strai\source\repos\VtkQtDicom\QtDicomVtk\x64\Release\QtDicomVtk.exe
