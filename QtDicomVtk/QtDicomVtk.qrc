@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/QtDicomVtk">
         <file>style.qss</file>
+        <file>pyramid.png</file>
     </qresource>
 </RCC>

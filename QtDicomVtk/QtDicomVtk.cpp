@@ -215,7 +215,7 @@ void QtDicomVtk::onDrawSphereClicked()
 
 
     vtkSmartPointer<vtkSTLReader> reader{ vtkSmartPointer<vtkSTLReader>::New() };
-    constexpr auto fN_polyData{ ".\\skeletonstl\\humanskeleton.stl" };
+    constexpr auto fN_polyData{ ".\\armstl\\arm.stl" };
     reader->SetFileName(fN_polyData);
     reader->Update();
     auto polyData = reader->GetOutput();
@@ -238,7 +238,10 @@ void QtDicomVtk::onDrawSphereClicked()
     //polyDataActor->SetPosition(-100, 0, 0);
 
     m_actor_polyData->GetProperty()->SetOpacity(0.8);
-    m_actor_polyData->GetProperty()->SetColor(0.0, 1.0, 0.0);
+    std::array<double, 3> tourquise{ 155.0 / 255.0, 1.0, 254.0 / 255.0 };
+    std::array<double, 3> neonpurple{ 171.0 / 255.0, 32.0 / 255, 253.0 / 255.0 };
+    const auto& [r, g, b] = neonpurple;
+    m_actor_polyData->GetProperty()->SetColor(r,g,b);
     m_actor_polyData->GetProperty()->SetSpecularColor(0.0, 0.0, 0.0);
     m_actor_polyData->GetProperty()->SetAmbientColor(0.5, 0.0, 0.0);
     m_actor_polyData->GetProperty()->SetRepresentationToWireframe();
