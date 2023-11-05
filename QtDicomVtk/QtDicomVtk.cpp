@@ -215,11 +215,12 @@ void QtDicomVtk::onDrawSphereClicked()
 
 
     vtkSmartPointer<vtkSTLReader> reader{ vtkSmartPointer<vtkSTLReader>::New() };
-    constexpr auto fN_polyData{ ".\\armstl\\arm.stl" };
+    constexpr auto fN_polyData{ ".\\skeletonstl\\humanskeleton.stl" };
     reader->SetFileName(fN_polyData);
     reader->Update();
     auto polyData = reader->GetOutput();
     vtkSmartPointer<vtkPolyDataMapper> stlDataMapper{ vtkSmartPointer<vtkPolyDataMapper>::New() };
+    
     stlDataMapper->SetInputData(polyData);
     //vtkSmartPointer<vtkActor> polyDataActor{ vtkSmartPointer<vtkActor>::New() };
     
@@ -237,9 +238,10 @@ void QtDicomVtk::onDrawSphereClicked()
     //polyDataActor->SetPosition(-100, 0, 0);
 
     m_actor_polyData->GetProperty()->SetOpacity(0.8);
-    m_actor_polyData->GetProperty()->SetColor(0.5, 0.5, 0.5);
-    m_actor_polyData->GetProperty()->SetSpecularColor(1.0, 0.0, 0.0);
+    m_actor_polyData->GetProperty()->SetColor(0.0, 1.0, 0.0);
+    m_actor_polyData->GetProperty()->SetSpecularColor(0.0, 0.0, 0.0);
     m_actor_polyData->GetProperty()->SetAmbientColor(0.5, 0.0, 0.0);
+    m_actor_polyData->GetProperty()->SetRepresentationToWireframe();
     
     m_actor_polyData->SetMapper(stlDataMapper);
 
