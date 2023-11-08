@@ -9,7 +9,7 @@
 #include <vtkImageSlice.h>
 #include <vtkImageSliceMapper.h>
 #include <vtkImageProperty.h>
-
+#include <vtkNamedColors.h>
 #include <vtkProperty.h>
 #include <vtkPolyDataMapper.h>
 #include <vtkDICOMImageReader.h>
@@ -140,10 +140,15 @@ void QtDicomVtk::onDrawSphereClicked()
     
     const auto histogramData_bG{ histogram->GetOutput() };
 
+    vtkNew<vtkNamedColors> colors;
+
     vtkCamera* camera_left = m_renderer_bg_left->GetActiveCamera();
     m_renderer_bg_left->SetViewport(0.0, 0.0, 0.5 , 1.0);
     m_renderer_bg_left->SetLayer(0);
-    m_renderer_bg_left->SetBackground(0.0, 0.3, 0.3);
+    //m_renderer_bg_left->SetBackground(0.0, 0.3, 0.3);
+    m_renderer_bg_left->GradientBackgroundOn();
+    m_renderer_bg_left->SetBackground(colors->GetColor3d("MediumSlateBlue").GetData());
+    m_renderer_bg_left->SetBackground2(colors->GetColor3d("MidnightBlue").GetData());
     m_renderWindow->AddRenderer(m_renderer_bg_left);
     vtkNew<vtkImageSliceMapper> imageMapper_left;
     double yd_left;
@@ -176,7 +181,10 @@ void QtDicomVtk::onDrawSphereClicked()
     vtkCamera* camera_right = m_renderer_bg_right->GetActiveCamera();
     m_renderer_bg_right->SetViewport(0.5, 0.0, 0.5 + 0.5, 1.0);
     m_renderer_bg_right->SetLayer(0);
-    m_renderer_bg_right->SetBackground(0.8, 0.3, 0.3);
+    //m_renderer_bg_right->SetBackground(0.8, 0.3, 0.3);
+    m_renderer_bg_right->GradientBackgroundOn();
+    m_renderer_bg_right->SetBackground(colors->GetColor3d("MediumSlateBlue").GetData());
+    m_renderer_bg_right->SetBackground2(colors->GetColor3d("MidnightBlue").GetData());
     m_renderWindow->AddRenderer(m_renderer_bg_right);
     vtkNew<vtkImageSliceMapper> imageMapper_right;
     double yd_right;
