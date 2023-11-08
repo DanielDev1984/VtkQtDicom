@@ -5,5 +5,7 @@
         <file>lighting_red.png</file>
         <file>lighting_blue.png</file>
         <file>80slightningscaled.PNG</file>
+        <file>bgImage.png</file>
+        <file>bgImage.jpg</file>
     </qresource>
 </RCC>

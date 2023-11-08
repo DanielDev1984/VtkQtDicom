@@ -18,7 +18,7 @@
 
 #include <sstream>
 
-//#include <qpalette.h>
+#include <qpalette.h>
 
 QtDicomVtk::QtDicomVtk(QWidget *parent)
     : QMainWindow(parent),
@@ -37,8 +37,13 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     ui.setupUi(this);
     /*ui.centralWidget->setAutoFillBackground(true);
     QPalette p = centralWidget()->palette();
-    p.setColor(QPalette::Background, QColor(255,255,255));
+    p.setColor(QPalette::Window, QColor(40,40,40));
     ui.centralWidget->setPalette(p);*/
+
+    ui.centralWidget->setWindowTitle("Test Background Image");
+    ui.centralWidget->resize(640, 480);
+    ui.centralWidget->setObjectName("Widget");
+    ui.centralWidget->setStyleSheet("#Widget { background-image: url(:/QtDicomVtk/bgImage.jpg); }");
 
     
     
