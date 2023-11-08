@@ -7,5 +7,6 @@
         <file>80slightningscaled.PNG</file>
         <file>bgImage.png</file>
         <file>bgImage.jpg</file>
+        <file>pyramid_scaled.png</file>
     </qresource>
 </RCC>

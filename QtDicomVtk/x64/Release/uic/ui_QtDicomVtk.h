@@ -39,9 +39,6 @@ public:
     QLabel *label_4;
     QPushButton *displaySeriesButton;
     QPushButton *plusButton;
-    QLabel *label_5;
-    QLabel *label_6;
-    QLabel *label_7;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -58,7 +55,7 @@ public:
         openGLWidget->setGeometry(QRect(110, 0, 361, 331));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(70, 200, 31, 23));
+        pushButton->setGeometry(QRect(40, 150, 50, 50));
         Slider_Level = new QSlider(centralWidget);
         Slider_Level->setObjectName(QString::fromUtf8("Slider_Level"));
         Slider_Level->setGeometry(QRect(10, 342, 201, 22));
@@ -89,19 +86,10 @@ public:
         label_4->setGeometry(QRect(310, 330, 71, 16));
         displaySeriesButton = new QPushButton(centralWidget);
         displaySeriesButton->setObjectName(QString::fromUtf8("displaySeriesButton"));
-        displaySeriesButton->setGeometry(QRect(70, 230, 31, 23));
+        displaySeriesButton->setGeometry(QRect(40, 200, 50, 50));
         plusButton = new QPushButton(centralWidget);
         plusButton->setObjectName(QString::fromUtf8("plusButton"));
-        plusButton->setGeometry(QRect(70, 260, 31, 24));
-        label_5 = new QLabel(centralWidget);
-        label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(10, 200, 47, 16));
-        label_6 = new QLabel(centralWidget);
-        label_6->setObjectName(QString::fromUtf8("label_6"));
-        label_6->setGeometry(QRect(10, 230, 49, 16));
-        label_7 = new QLabel(centralWidget);
-        label_7->setObjectName(QString::fromUtf8("label_7"));
-        label_7->setGeometry(QRect(10, 260, 49, 16));
+        plusButton->setGeometry(QRect(40, 250, 50, 50));
         QtDicomVtkClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtDicomVtkClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -129,9 +117,6 @@ public:
         label_4->setText(QCoreApplication::translate("QtDicomVtkClass", "ZPosition", nullptr));
         displaySeriesButton->setText(QString());
         plusButton->setText(QString());
-        label_5->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplayScan", nullptr));
-        label_6->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplaySeries", nullptr));
-        label_7->setText(QCoreApplication::translate("QtDicomVtkClass", "increase sliceNo", nullptr));
     } // retranslateUi
 
 };

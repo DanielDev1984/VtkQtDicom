@@ -185,6 +185,7 @@ void QtDicomVtk::onDrawSphereClicked()
     m_renderer_bg_right->GradientBackgroundOn();
     m_renderer_bg_right->SetBackground(colors->GetColor3d("MediumSlateBlue").GetData());
     m_renderer_bg_right->SetBackground2(colors->GetColor3d("MidnightBlue").GetData());
+    m_renderer_bg_right->SetBackgroundAlpha(0.0);
     m_renderWindow->AddRenderer(m_renderer_bg_right);
     vtkNew<vtkImageSliceMapper> imageMapper_right;
     double yd_right;
@@ -236,7 +237,7 @@ void QtDicomVtk::onDrawSphereClicked()
 
 
     vtkSmartPointer<vtkSTLReader> reader{ vtkSmartPointer<vtkSTLReader>::New() };
-    constexpr auto fN_polyData{ ".\\armstl\\arm.stl" };
+    constexpr auto fN_polyData{ ".\\sphere\\sphere.stl" };
     reader->SetFileName(fN_polyData);
     reader->Update();
     auto polyData = reader->GetOutput();

@@ -1,2 +1,6 @@
-﻿  QtDicomVtk.cpp
+﻿  Reading Qt configuration (C:/Qt/6.0.2/msvc2019_64/bin/qmake)
+  QtDicomVtk.cpp
+  main.cpp
+  qrc_QtDicomVtk.cpp
+  moc_QtDicomVtk.cpp
   QtDicomVtk.vcxproj -> C:\Users\strai\source\repos\VtkQtDicom\QtDicomVtk\x64\Release\QtDicomVtk.exe

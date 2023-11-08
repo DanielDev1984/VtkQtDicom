@@ -1,10 +1,11 @@
 QPushButton { 
-	color: magenta; 
+	color: none; 
 	/*background-color: qlineargradient(x1:0, y1:1, x2:1, y2:0, stop:0 black, stop:1 grey);*/
-	background-image: url(:/QtDicomVtk/80slightningscaled.PNG);
+	background-image: url(:/QtDicomVtk/pyramid_scaled.png);
 	background-repeat: no-repeat;
 	background-position: center;
-	height: 30;
+	height: 50;
+	width:50;
 	border-radius: 10px;
 	border-style: solid;
 	border-width: 1px;
