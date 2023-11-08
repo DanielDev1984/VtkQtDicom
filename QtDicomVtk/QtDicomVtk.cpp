@@ -18,6 +18,8 @@
 
 #include <sstream>
 
+//#include <qpalette.h>
+
 QtDicomVtk::QtDicomVtk(QWidget *parent)
     : QMainWindow(parent),
     m_renderWindow{vtkSmartPointer<vtkGenericOpenGLRenderWindow>::New()},
@@ -33,6 +35,12 @@ QtDicomVtk::QtDicomVtk(QWidget *parent)
     m_actor_polyData{ vtkSmartPointer<vtkActor>::New() }
 {
     ui.setupUi(this);
+    /*ui.centralWidget->setAutoFillBackground(true);
+    QPalette p = centralWidget()->palette();
+    p.setColor(QPalette::Background, QColor(255,255,255));
+    ui.centralWidget->setPalette(p);*/
+
+    
     
 
     m_graphicsView = new QGraphicsView(ui.centralWidget);

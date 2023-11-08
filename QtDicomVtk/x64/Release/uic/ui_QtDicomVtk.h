@@ -39,6 +39,9 @@ public:
     QLabel *label_4;
     QPushButton *displaySeriesButton;
     QPushButton *plusButton;
+    QLabel *label_5;
+    QLabel *label_6;
+    QLabel *label_7;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -55,7 +58,7 @@ public:
         openGLWidget->setGeometry(QRect(110, 0, 361, 331));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(10, 290, 75, 23));
+        pushButton->setGeometry(QRect(70, 200, 31, 23));
         Slider_Level = new QSlider(centralWidget);
         Slider_Level->setObjectName(QString::fromUtf8("Slider_Level"));
         Slider_Level->setGeometry(QRect(10, 342, 201, 22));
@@ -72,24 +75,33 @@ public:
         label_2->setGeometry(QRect(10, 370, 47, 16));
         SliderZRotation = new QSlider(centralWidget);
         SliderZRotation->setObjectName(QString::fromUtf8("SliderZRotation"));
-        SliderZRotation->setGeometry(QRect(310, 400, 160, 22));
+        SliderZRotation->setGeometry(QRect(310, 410, 160, 22));
         SliderZRotation->setOrientation(Qt::Horizontal);
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(310, 380, 71, 16));
+        label_3->setGeometry(QRect(310, 390, 71, 16));
         Slider_ZPosition = new QSlider(centralWidget);
         Slider_ZPosition->setObjectName(QString::fromUtf8("Slider_ZPosition"));
-        Slider_ZPosition->setGeometry(QRect(310, 350, 160, 22));
+        Slider_ZPosition->setGeometry(QRect(310, 350, 160, 41));
         Slider_ZPosition->setOrientation(Qt::Horizontal);
         label_4 = new QLabel(centralWidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
         label_4->setGeometry(QRect(310, 330, 71, 16));
         displaySeriesButton = new QPushButton(centralWidget);
         displaySeriesButton->setObjectName(QString::fromUtf8("displaySeriesButton"));
-        displaySeriesButton->setGeometry(QRect(90, 290, 75, 23));
+        displaySeriesButton->setGeometry(QRect(70, 230, 31, 23));
         plusButton = new QPushButton(centralWidget);
         plusButton->setObjectName(QString::fromUtf8("plusButton"));
-        plusButton->setGeometry(QRect(180, 290, 111, 24));
+        plusButton->setGeometry(QRect(70, 260, 31, 24));
+        label_5 = new QLabel(centralWidget);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setGeometry(QRect(10, 200, 47, 16));
+        label_6 = new QLabel(centralWidget);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setGeometry(QRect(10, 230, 49, 16));
+        label_7 = new QLabel(centralWidget);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+        label_7->setGeometry(QRect(10, 260, 49, 16));
         QtDicomVtkClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(QtDicomVtkClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
@@ -110,13 +122,16 @@ public:
     void retranslateUi(QMainWindow *QtDicomVtkClass)
     {
         QtDicomVtkClass->setWindowTitle(QCoreApplication::translate("QtDicomVtkClass", "QtDicomVtk", nullptr));
-        pushButton->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplyScan", nullptr));
+        pushButton->setText(QString());
         label->setText(QCoreApplication::translate("QtDicomVtkClass", "Level", nullptr));
         label_2->setText(QCoreApplication::translate("QtDicomVtkClass", "Window", nullptr));
         label_3->setText(QCoreApplication::translate("QtDicomVtkClass", "ZRotation", nullptr));
         label_4->setText(QCoreApplication::translate("QtDicomVtkClass", "ZPosition", nullptr));
-        displaySeriesButton->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplaySeries", nullptr));
-        plusButton->setText(QCoreApplication::translate("QtDicomVtkClass", "increase sliceNo", nullptr));
+        displaySeriesButton->setText(QString());
+        plusButton->setText(QString());
+        label_5->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplayScan", nullptr));
+        label_6->setText(QCoreApplication::translate("QtDicomVtkClass", "DisplaySeries", nullptr));
+        label_7->setText(QCoreApplication::translate("QtDicomVtkClass", "increase sliceNo", nullptr));
     } // retranslateUi
 
 };

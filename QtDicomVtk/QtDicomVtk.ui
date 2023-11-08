@@ -27,14 +27,14 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>75</width>
+      <x>70</x>
+      <y>200</y>
+      <width>31</width>
       <height>23</height>
      </rect>
     </property>
     <property name="text">
-     <string>DisplyScan</string>
+     <string/>
     </property>
    </widget>
    <widget class="QSlider" name="Slider_Level">
@@ -93,7 +93,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>400</y>
+      <y>410</y>
       <width>160</width>
       <height>22</height>
      </rect>
@@ -106,7 +106,7 @@
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>380</y>
+      <y>390</y>
       <width>71</width>
       <height>16</height>
      </rect>
@@ -121,7 +121,7 @@
       <x>310</x>
       <y>350</y>
       <width>160</width>
-      <height>22</height>
+      <height>41</height>
      </rect>
     </property>
     <property name="orientation">
@@ -144,23 +144,62 @@
    <widget class="QPushButton" name="displaySeriesButton">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>290</y>
-      <width>75</width>
+      <x>70</x>
+      <y>230</y>
+      <width>31</width>
       <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plusButton">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>260</y>
+      <width>31</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>200</y>
+      <width>47</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DisplayScan</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>49</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>DisplaySeries</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="plusButton">
+   <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>290</y>
-      <width>111</width>
-      <height>24</height>
+      <x>10</x>
+      <y>260</y>
+      <width>49</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">

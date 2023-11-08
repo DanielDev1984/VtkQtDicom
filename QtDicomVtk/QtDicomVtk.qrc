@@ -2,5 +2,8 @@
     <qresource prefix="/QtDicomVtk">
         <file>style.qss</file>
         <file>pyramid.png</file>
+        <file>lighting_red.png</file>
+        <file>lighting_blue.png</file>
+        <file>80slightningscaled.PNG</file>
     </qresource>
 </RCC>
